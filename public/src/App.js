@@ -58,7 +58,7 @@ class App extends Component {
   }
 
   render() {
-
+    alert('This is a beta application. Use with care.')
     let books = this.state.books.map( (book, i) => (
       <div key={i + book.title} 
         style={{
