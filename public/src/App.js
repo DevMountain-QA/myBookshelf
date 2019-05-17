@@ -58,7 +58,10 @@ class App extends Component {
   }
 
   render() {
-    alert('This is a beta application. Use with care.')
+    let userName = "";
+    while(userName === "" || userName === null){
+      userName = prompt('Please enter your name.')
+    }
     let books = this.state.books.map( (book, i) => (
       <div key={i + book.title} 
         style={{
@@ -92,7 +95,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to My Bookshelf</h2>
+          <h2>Welcome to {userName}'s Bookshelf</h2>
         </div>
         <div className="App-intro">
         <form action="submit" onSubmit={this.addBook}>
