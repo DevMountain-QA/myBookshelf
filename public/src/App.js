@@ -11,16 +11,27 @@ class App extends Component {
       books: [],
       title: '',
       author: '',
-      showId: ''
+      showId: '',
+      username: ''
     };
   }
 
   componentDidMount() {
+    if(this.state.username === '' || this.state.username === undefined)
+      this.getName();
+    axios.defaults.baseURL = 'http://localhost:4000';
     axios.defaults.headers.common['Access-Control-Allow-Origin'] = "*";
     axios.get( `/api/books` )
     .then( response => {
       this.setState({ books: response.data });
     });
+  }
+
+  getName = () =>{
+    var name = ''
+    while (name === ''||name === null)
+      name = prompt('Please enter your name.')
+      this.setState({username: name})      
   }
 
   addBook = (e) => {
@@ -58,10 +69,7 @@ class App extends Component {
   }
 
   render() {
-    let userName = "";
-    while(userName === "" || userName === null){
-      userName = prompt('Please enter your name.')
-    }
+    
     let books = this.state.books.map( (book, i) => (
       <div key={i + book.title} 
         style={{
@@ -95,7 +103,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to {userName}'s Bookshelf</h2>
+          <h2>Welcome to {this.state.username}'s Bookshelf</h2>
         </div>
         <div className="App-intro">
         <form action="submit" onSubmit={this.addBook}>
