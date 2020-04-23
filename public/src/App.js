@@ -74,10 +74,10 @@ class App extends Component {
       <div key={i + book.title} 
         style={{
           display: 'flex',
-          'justify-content': 'space-evenly',
+          'justifyContent': 'space-evenly',
           height: '30px',
           margin: '5px',
-          'align-items': 'center'}}> 
+          'alignItems': 'center'}}> 
         <h3>Title:</h3>
         {
           this.state.showId !== book.id ?
